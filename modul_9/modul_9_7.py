@@ -1,6 +1,6 @@
 def is_prime(func):
-    def wrapper(*args):
-        summ = func(*args)
+    def wrapper(*args, **kwargs):
+        summ = func(*args, **kwargs)
         is_prime_ = True
         for j in range(3, summ, 2):
             if summ % 2 == 0:
