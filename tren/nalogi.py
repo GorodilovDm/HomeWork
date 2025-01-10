@@ -21,7 +21,7 @@ def save_():
 
 root = Tk()
 root.title("Налоги")
-root.geometry("300x350")
+root.minsize(width=258, height=350)
 
 root.option_add("*tearOff", FALSE)
 
@@ -61,5 +61,5 @@ tree.column("#2", stretch=NO, width=120)
 scrollbar = ttk.Scrollbar(orient=VERTICAL, command=tree.yview)
 tree.configure(yscrollcommand=scrollbar.set)
 scrollbar.grid(row=0, column=1, sticky="ns")
-
+main_menu.entryconfigure(1, state='normal')
 root.mainloop()
