@@ -10,13 +10,19 @@ def new_():
     pass
 
 def open_():
-    filepath = filedialog.askopenfilename()
+    filepath = filedialog.askopenfilename(defaultextension='.txt',
+                  filetypes=[('Текст','*.txt'),
+                            ('Все файлы','*.*')])
     if filepath != "":
-        with open(filepath, "r") as file:
+        main_menu.entryconfigure(1, state='normal')
+        with open(filepath, "r", encoding='utf-8') as file:
             text = file.read()
 
 def save_():
-    pass
+    filepath = filedialog.asksaveasfilename()
+    if filepath != "":
+        with open(filepath, "w", encoding='utf-8') as file:
+            file.write('')
 
 
 root = Tk()
@@ -29,7 +35,7 @@ main_menu = Menu()
 
 file_menu = Menu()
 file_menu.add_command(label="Новый")
-file_menu.add_command(label="Сохранить")
+file_menu.add_command(label="Сохранить", command=save_)
 file_menu.add_command(label="Открыть", command=open_)
 file_menu.add_separator()
 file_menu.add_command(label="Выход", command=root.destroy)
@@ -61,5 +67,5 @@ tree.column("#2", stretch=NO, width=120)
 scrollbar = ttk.Scrollbar(orient=VERTICAL, command=tree.yview)
 tree.configure(yscrollcommand=scrollbar.set)
 scrollbar.grid(row=0, column=1, sticky="ns")
-main_menu.entryconfigure(1, state='normal')
+
 root.mainloop()
