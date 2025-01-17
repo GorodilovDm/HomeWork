@@ -19,10 +19,10 @@ if __name__ == '__main__':
     for name in filenames:
         read_info(name)
     time_stop = datetime.now()
-    print(time_stop - time_start)
+    print(time_stop - time_start, '(линейный)')
 
     time_start = datetime.now()
     with Pool() as pool:
         pool.map(read_info, filenames)
     time_stop = datetime.now()
-    print(time_stop - time_start)
+    print(time_stop - time_start, '(многопроцессный)')
